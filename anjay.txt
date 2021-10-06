@@ -1,0 +1,4 @@
+DATABASE_HOST = '34.101.188.25'
+DATABASE_USER = 'rizky'
+DATABASE_PASSWORD = 'Password123#@!'
+DATABASE_NAME = 'cuciintest'
