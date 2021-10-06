@@ -1,6 +1,6 @@
 export const user = {
   type: 'object',
-  required: ['email', 'password', 'name', 'role'],
+  required: ['email', 'password', 'name', 'role_id'],
   properties: {
     email: {
       type: 'string',
@@ -15,9 +15,10 @@ export const user = {
       type: 'string',
       minLength: 1,
     },
-    role: {
+    role_id: {
       type: 'integer',
       minimum: 1,
+
     },
 
   },

@@ -27,6 +27,8 @@ db.laundries = laundries(sequelize, Sequelize);
 db.transactions = transactions(sequelize, Sequelize);
 db.laundryStatuses = laundryStatuses(sequelize, Sequelize);
 db.roles = roles(sequelize, Sequelize);
+db.roles.hasMany(db.users, {foreignKey: 'role_id'});
+db.users.belongsTo(db.roles, {foreignKey: 'role_id'});
 db.users.hasOne(db.laundries, {foreignKey: 'user_id'});
 db.laundries.belongsTo(db.users, {foreignKey: 'user_id'});
 export default db;

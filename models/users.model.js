@@ -12,14 +12,18 @@ export const users = (sequelize, Sequelize) => {
     email: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
     password: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    role: {
-      type: Sequelize.SMALLINT,
-      defaultValue: 1,
+    role_id: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'roles',
+        key: 'id_role',
+      },
     },
     created_at: {
       type: 'TIMESTAMP',

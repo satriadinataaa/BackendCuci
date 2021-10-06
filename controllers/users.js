@@ -1,5 +1,6 @@
 import db from '../models/index.js';
-
+import jsonwebtoken from 'jsonwebtoken';
+import crypto from 'crypto';
 const Users = db.users;
 
 export const getAllUsers = async (req, res) => {
@@ -24,11 +25,14 @@ export const getAllUsers = async (req, res) => {
           [db.op.like]: '%'+search+'%',
         },
       },
-      include: {
-        model: db.laundries,
-      },
+      include: [
+        {
+          model: db.laundries,
+        }, {
+          model: db.roles,
+        },
+      ]})
 
-    })
         .then((data) => {
           res.status(200).send(data);
         })
@@ -55,12 +59,17 @@ export const createUser = async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     name: req.body.name,
-    role: req.body.role,
+    role_id: req.body.role_id,
   };
 
   Users.create(user)
       .then((data) => {
-        res.send({message: `user ${user.email} created!`});
+        const token = jsonwebtoken.sign({email: user.email}, 'cuciin', {expiresIn: '1800s'});
+
+
+        res.send({message: `user ${user.email} created!`,
+          detailUser: user,
+          token: token});
       })
       .catch((err) => {
         res.status(500).send({
