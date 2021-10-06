@@ -1,6 +1,6 @@
-export const users = (sequelize, Sequelize) => {
-  const Users = sequelize.define('users', {
-    id_user: {
+export const roles = (sequelize, Sequelize) => {
+  const roles = sequelize.define('roles', {
+    id_role: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -8,18 +8,6 @@ export const users = (sequelize, Sequelize) => {
     name: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    role: {
-      type: Sequelize.SMALLINT,
-      defaultValue: 1,
     },
     created_at: {
       type: 'TIMESTAMP',
@@ -31,9 +19,12 @@ export const users = (sequelize, Sequelize) => {
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       allowNull: false,
     },
+    deleted: {
+      type: Sequelize.TINYINT,
+    },
   },
   {
     timestamps: false,
   });
-  return Users;
+  return roles;
 };

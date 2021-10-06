@@ -11,7 +11,7 @@ import {ValidationError} from 'express-json-validator-middleware';
 import healthcheck from 'express-healthcheck';
 import basicAuth from 'express-basic-auth';
 
-const port = process.env.PORT || 3000;
+const port = 5000;
 const app = express();
 
 const validationErrorMiddleware = (error, request, response, next) => {
