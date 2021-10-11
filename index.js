@@ -10,6 +10,7 @@ import {swaggerDocument} from './swagger/swagger-document.js';
 import {ValidationError} from 'express-json-validator-middleware';
 import healthcheck from 'express-healthcheck';
 import basicAuth from 'express-basic-auth';
+import {createUser, login} from './controllers/users.js';
 
 const port = 5000;
 const app = express();
@@ -70,7 +71,8 @@ app.use(
 //   authorizeAsync: true,
 //   unauthorizedResponse: getUnauthorizedResponse,
 // }));
-
+app.post('/register', createUser);
+app.post('/login', login);
 app.use('/users', usersRouter);
 app.use('/laundries', laundriesRouter);
 app.use('/transactions', transactionsRouter);
